@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { useRef } from "react";
 import CoffeePack from "./CoffeePack";
@@ -54,15 +54,23 @@ export default function CoffeeStory() {
     offset: ["start start", "end end"],
   });
 
-  const packRotate = useTransform(scrollYProgress, [0, 0.35, 0.68, 1], [-10, 6, -4, 0]);
-  const packScale = useTransform(scrollYProgress, [0, 0.33, 0.7, 1], [0.9, 1.03, 0.96, 0.78]);
-  const packY = useTransform(scrollYProgress, [0, 0.4, 0.75, 1], [60, 0, -26, 18]);
-  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 1.1, 0.86]);
-  const beanOneY = useTransform(scrollYProgress, [0, 1], [120, -180]);
-  const beanTwoY = useTransform(scrollYProgress, [0, 1], [-80, 170]);
-  const pour = useTransform(scrollYProgress, [0.66, 0.9], [0, 1]);
-  const cupOpacity = useTransform(scrollYProgress, [0.72, 0.88], [0, 1]);
-  const cupY = useTransform(scrollYProgress, [0.72, 0.9], [70, 0]);
+  // A lightly damped progress value keeps the scroll-linked motion fluid on
+  // touch devices without making the story feel disconnected from the finger.
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 105,
+    damping: 28,
+    mass: 0.22,
+  });
+
+  const packRotate = useTransform(smoothProgress, [0, 0.35, 0.68, 1], [-10, 6, -4, 0]);
+  const packScale = useTransform(smoothProgress, [0, 0.33, 0.7, 1], [0.9, 1.03, 0.96, 0.78]);
+  const packY = useTransform(smoothProgress, [0, 0.4, 0.75, 1], [60, 0, -26, 18]);
+  const glowScale = useTransform(smoothProgress, [0, 0.5, 1], [0.7, 1.1, 0.86]);
+  const beanOneY = useTransform(smoothProgress, [0, 1], [120, -180]);
+  const beanTwoY = useTransform(smoothProgress, [0, 1], [-80, 170]);
+  const pour = useTransform(smoothProgress, [0.66, 0.9], [0, 1]);
+  const cupOpacity = useTransform(smoothProgress, [0.72, 0.88], [0, 1]);
+  const cupY = useTransform(smoothProgress, [0.72, 0.9], [70, 0]);
 
   return (
     <section className="coffee-story" id="story" ref={ref}>
@@ -82,7 +90,7 @@ export default function CoffeeStory() {
 
         <div className="story-copy-stack">
           {chapters.map((_, index) => (
-            <Chapter key={index} index={index} progress={scrollYProgress} />
+            <Chapter key={index} index={index} progress={smoothProgress} />
           ))}
           <div className="story-progress" aria-hidden="true">
             <motion.span style={{ scaleX: scrollYProgress }} />

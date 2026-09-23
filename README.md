@@ -56,3 +56,7 @@ git push -u origin main
 - Navegación: `components/NavBar.tsx`
 
 Sustituye `https://example.com` en `app/layout.tsx`, `app/sitemap.ts` y `app/robots.ts` por el dominio real antes de publicar.
+
+## Mobile fluidity update
+
+This version includes a mobile stability pass: safe viewport sizing for sticky scrollytelling, fluid `clamp()` typography and artwork sizing, horizontal overflow protection, small-height viewport handling, and a lightly damped Framer Motion spring for smoother touch scrolling.
