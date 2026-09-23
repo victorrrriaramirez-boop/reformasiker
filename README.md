@@ -1,39 +1,53 @@
-# Reformas Iker
+# Premium Product Showcase
 
-Web corporativa multipágina construida con Next.js y TypeScript, preparada para GitHub y Vercel. Incluye Home, Servicios, Proyectos, Sobre nosotros, Contacto y Privacidad.
+Clean-room Next.js landing page inspired by the visual language of premium technology product pages: large typography, generous spacing, sticky scroll storytelling and modular feature cards.
 
-## Instalación y desarrollo
+This project does **not** copy Apple source code, proprietary assets, product photography, logos or exact marketing copy.
+
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Compilación
+Then open `http://localhost:3000`.
+
+## Deploy to GitHub
 
 ```bash
-npm run build
+git init
+git add .
+git commit -m "Initial premium product landing"
+git branch -M main
+git remote add origin https://github.com/YOUR-USER/YOUR-REPO.git
+git push -u origin main
 ```
 
-La exportación estática se genera en `out/`.
+## Deploy to Vercel
 
-## Variables de entorno
+1. Push the repository to GitHub.
+2. Open Vercel and click **Add New > Project**.
+3. Import the GitHub repository.
+4. Framework preset: **Next.js**.
+5. Click **Deploy**.
 
-Copia `.env.example` como `.env.local` y configura:
+No environment variables are required.
 
-- `NEXT_PUBLIC_SITE_URL`: dominio principal sin barra final.
-- `NEXT_PUBLIC_GTM_ID`: identificador opcional de Google Tag Manager.
+## Main files
 
-## GitHub y Vercel
+- `app/page.tsx` — page structure and content
+- `app/globals.css` — complete visual system and responsive styling
+- `components/ScrollFeature.tsx` — sticky scroll animation with Framer Motion
+- `components/PhoneMockup.tsx` — original CSS-based device mockup
+- `components/NavBar.tsx` — floating navigation
 
-Sube el contenido del proyecto a un repositorio de GitHub. En Vercel, importa el repositorio y conserva la configuración automática de Next.js. Añade las variables de entorno en la configuración del proyecto.
+## Adapt it
 
-## Antes de publicar
+Replace:
+- `Nova X Pro` with your product or brand.
+- Burgundy gradients in `app/globals.css` with your palette.
+- The CSS phone mockup with real project images using `next/image`.
+- Placeholder specifications with real product data.
 
-- Configurar el dominio con `NEXT_PUBLIC_SITE_URL`.
-- Confirmar razón social, NIF, dirección, teléfono, zona de trabajo y horarios.
-- Confirmar años de experiencia y cifras comerciales.
-- Sustituir los proyectos de muestra por trabajos autorizados.
-- Completar los textos jurídicos reales.
-- Conectar el formulario a correo, CRM o endpoint propio.
-- Instalar un gestor de consentimiento antes de activar analítica no esencial.
+For production, update `metadataBase` in `app/layout.tsx` to the final domain.

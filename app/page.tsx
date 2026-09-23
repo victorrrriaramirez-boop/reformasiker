@@ -1,15 +1,192 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowDown, CheckCircle2 } from "lucide-react";
-import { CTA, Projects, Services } from "@/components/sections";
+import NavBar from "@/components/NavBar";
+import PhoneMockup from "@/components/PhoneMockup";
+import Reveal from "@/components/Reveal";
+import ScrollFeature from "@/components/ScrollFeature";
 
-export default function Home(){return <>
-  <section className="hero"><div className="container hero-grid"><div className="hero-copy"><span className="eyebrow">Reformas integrales · Madrid</span><h1>Espacios pensados para <em>vivir mejor.</em></h1><p>Diseñamos y ejecutamos reformas con una planificación clara, materiales honestos y atención a cada detalle.</p><div className="actions"><Link className="button" href="/contacto">Pedir presupuesto</Link><Link className="text-link" href="/proyectos">Ver proyectos</Link></div><div className="hero-facts"><span><strong>15+</strong>Años de experiencia</span><span><strong>120</strong>Proyectos realizados</span><span><strong>1</strong>Equipo coordinado</span></div></div><div className="hero-image"><Image src="/images/proyecto-salon.webp" alt="Reforma integral de salón y cocina" fill priority sizes="(max-width:900px) 100vw, 50vw"/><div className="image-note"><span>Proyecto destacado</span><strong>Reforma integral · Madrid</strong></div></div></div><a className="scroll" href="#servicios"><ArrowDown/>Descubrir</a></section>
-  <section className="section intro"><div className="container intro-grid"><span className="eyebrow">Nuestra forma de trabajar</span><div><h2>El diseño importa. La ejecución también.</h2><p>Convertimos ideas en espacios coherentes, funcionales y duraderos. Un único equipo se ocupa de planificar, coordinar y supervisar cada fase.</p></div></div></section>
-  <section className="section services-section" id="servicios"><div className="container section-heading"><span className="eyebrow">Servicios</span><h2>Todo lo necesario para transformar tu vivienda.</h2></div><div className="container"><Services/></div></section>
-  <section className="process"><div className="container process-grid"><div className="process-image"><Image src="/images/proceso-reforma.webp" alt="Profesional trabajando durante una reforma" fill sizes="(max-width:900px) 100vw, 50vw"/></div><div className="process-copy"><span className="eyebrow">Un proceso sin improvisaciones</span><h2>De la primera visita a la entrega final.</h2>{[["01","Escuchamos","Visitamos el espacio y definimos necesidades, prioridades y presupuesto."],["02","Planificamos","Organizamos distribución, materiales, calendario y coordinación de gremios."],["03","Construimos","Supervisamos la obra y cuidamos los detalles hasta la entrega."]].map(([n,t,x])=><div className="step" key={n}><span>{n}</span><div><h3>{t}</h3><p>{x}</p></div></div>)}</div></div></section>
-  <section className="section projects-section"><div className="container heading-row"><div><span className="eyebrow">Proyectos</span><h2>Reformas que ganan luz, orden y carácter.</h2></div><Link className="text-link" href="/proyectos">Ver todos</Link></div><div className="container"><Projects/></div></section>
-  <section className="quote"><div className="container"><p>“La diferencia está en pensar bien antes de construir y cuidar igual lo que se ve y lo que queda oculto.”</p><span>Reformas Iker · Dirección de obra</span></div></section>
-  <section className="section trust"><div className="container trust-grid"><div><span className="eyebrow">Compromiso</span><h2>Una reforma acompañada de principio a fin.</h2></div><div>{["Presupuesto detallado y explicado","Calendario y seguimiento de obra","Coordinación de todos los profesionales","Limpieza y revisión antes de la entrega"].map(x=><p key={x}><CheckCircle2/> {x}</p>)}</div></div></section>
-  <CTA/>
-</>}
+const highlights = [
+  {
+    kicker: "Cámara",
+    title: "Luz, detalle y profundidad.",
+    text: "Un módulo visual pensado para presentar una característica clave con imagen protagonista y una frase muy breve.",
+    className: "card-camera",
+  },
+  {
+    kicker: "Autonomía",
+    title: "Más horas. Menos interrupciones.",
+    text: "Usa cifras grandes, contenido conciso y una jerarquía tipográfica que permita escanear la página de un vistazo.",
+    className: "card-battery",
+  },
+  {
+    kicker: "Materiales",
+    title: "Precisión en cada borde.",
+    text: "La estética premium se apoya en mucho aire, bordes suaves y un tratamiento editorial del producto.",
+    className: "card-material",
+  },
+  {
+    kicker: "Rendimiento",
+    title: "Potencia sin ruido visual.",
+    text: "Un bloque oscuro funciona bien para cambiar el ritmo y destacar especificaciones o tecnología.",
+    className: "card-chip",
+  },
+];
+
+export default function Home() {
+  return (
+    <main id="top">
+      <NavBar />
+
+      <section className="hero section-pad">
+        <div className="hero-copy">
+          <p className="product-name">Nova X Pro</p>
+          <h1>Mucho más que Pro.</h1>
+          <p className="hero-sub">
+            Una plantilla visual premium para presentar tecnología, arquitectura, automoción o cualquier producto de alto valor.
+          </p>
+          <div className="hero-actions">
+            <a className="pill" href="#highlights">Descubrir</a>
+            <a className="text-link" href="#buy">Ver configuración →</a>
+          </div>
+        </div>
+        <div className="hero-product">
+          <div className="hero-halo" />
+          <PhoneMockup />
+        </div>
+      </section>
+
+      <section className="intro-statement">
+        <Reveal>
+          <p className="eyebrow">Nueva generación</p>
+          <h2>Una landing que cuenta el producto como una historia.</h2>
+        </Reveal>
+      </section>
+
+      <section className="highlights section-pad" id="highlights">
+        <div className="section-heading">
+          <Reveal>
+            <p className="eyebrow">Lo principal</p>
+            <h2>Todo lo importante, de un vistazo.</h2>
+          </Reveal>
+        </div>
+        <div className="highlight-grid">
+          {highlights.map((item, index) => (
+            <Reveal key={item.title} delay={index * 0.05}>
+              <article className={`feature-card ${item.className}`}>
+                <p className="card-kicker">{item.kicker}</p>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <div className="feature-art" aria-hidden="true">
+                  <span className="art-ring ring-a" />
+                  <span className="art-ring ring-b" />
+                  <span className="art-dot" />
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <ScrollFeature />
+
+      <section className="camera-zone section-pad" id="camera">
+        <div className="section-heading light">
+          <Reveal>
+            <p className="eyebrow">Sistema visual</p>
+            <h2>Acércate. Aléjate. Cambia el punto de vista.</h2>
+          </Reveal>
+        </div>
+        <div className="camera-layout">
+          <Reveal>
+            <div className="lens-stage">
+              <div className="lens lens-1"><span /></div>
+              <div className="lens lens-2"><span /></div>
+              <div className="lens lens-3"><span /></div>
+            </div>
+          </Reveal>
+          <div className="camera-stats">
+            <Reveal delay={0.08}>
+              <div className="stat"><strong>48</strong><span>MP equivalentes de ejemplo</span></div>
+            </Reveal>
+            <Reveal delay={0.14}>
+              <div className="stat"><strong>8×</strong><span>zoom óptico simulado</span></div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="stat"><strong>4K</strong><span>vídeo de demostración</span></div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="performance section-pad" id="performance">
+        <div className="performance-grid">
+          <Reveal>
+            <div className="chip-visual">
+              <div className="chip-core">NX</div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <div className="performance-copy">
+              <p className="eyebrow">Rendimiento</p>
+              <h2>Una sección técnica que sigue sintiéndose editorial.</h2>
+              <p>
+                Ideal para explicar procesadores, materiales, motores, sistemas constructivos o cualquier tecnología sin convertir la página en una ficha aburrida.
+              </p>
+              <div className="metric-row">
+                <div><strong>+80%</strong><span>dato de ejemplo</span></div>
+                <div><strong>2,5×</strong><span>dato de ejemplo</span></div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="design-cards section-pad" id="design">
+        <Reveal>
+          <div className="section-heading">
+            <p className="eyebrow">Más posibilidades</p>
+            <h2>Bloques modulares para seguir contando la historia.</h2>
+          </div>
+        </Reveal>
+        <div className="story-grid">
+          <Reveal>
+            <article className="story story-a">
+              <p className="eyebrow">Detalle</p>
+              <h3>Tipografía gigante y composición limpia.</h3>
+            </article>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <article className="story story-b">
+              <div className="mini-phone"><PhoneMockup compact /></div>
+              <h3>Animaciones suaves, no decorativas.</h3>
+            </article>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <article className="story story-c">
+              <p className="eyebrow">Responsive</p>
+              <h3>Funciona en móvil, tablet y escritorio.</h3>
+            </article>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="buy section-pad" id="buy">
+        <Reveal>
+          <div className="buy-panel">
+            <p className="eyebrow">Listo para adaptar</p>
+            <h2>Cambia el contenido. Mantén la experiencia.</h2>
+            <p>
+              Sustituye el nombre, colores, mockup y textos por tu proyecto y tendrás una base sólida para una landing premium.
+            </p>
+            <div className="hero-actions centered">
+              <a className="pill dark" href="https://vercel.com/new" target="_blank" rel="noreferrer">Desplegar en Vercel</a>
+              <a className="text-link dark-link" href="#top">Volver arriba ↑</a>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <footer className="footer">
+        <p>Demo de referencia visual. No contiene código, imágenes ni textos propietarios de Apple.</p>
+      </footer>
+    </main>
+  );
+}
