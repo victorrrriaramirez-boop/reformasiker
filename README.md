@@ -1,53 +1,58 @@
-# Premium Product Showcase
+# Bruma Coffee — Scrollytelling Landing
 
-Clean-room Next.js landing page inspired by the visual language of premium technology product pages: large typography, generous spacing, sticky scroll storytelling and modular feature cards.
+Landing de producto para una cafetería / marca de café, creada con Next.js, TypeScript y Framer Motion.
 
-This project does **not** copy Apple source code, proprietary assets, product photography, logos or exact marketing copy.
+## Incluye
 
-## Run locally
+- Diseño responsive para móvil, tablet y escritorio.
+- Hero de producto premium.
+- Scrollytelling con `position: sticky`, `useScroll` y `useTransform`.
+- Cuatro capítulos animados: origen, tueste, molienda y taza.
+- Mockups originales construidos con CSS, sin imágenes externas.
+- Secciones de notas de cata, ritual y producto.
+- Metadata Open Graph, sitemap y robots.
+- Lista para GitHub y Vercel.
+
+## Ejecutar en local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open `http://localhost:3000`.
+Abre `http://localhost:3000`.
 
-## Deploy to GitHub
+## Compilar
+
+```bash
+npm run build
+```
+
+## Subir a GitHub
 
 ```bash
 git init
 git add .
-git commit -m "Initial premium product landing"
+git commit -m "Bruma Coffee landing"
 git branch -M main
-git remote add origin https://github.com/YOUR-USER/YOUR-REPO.git
+git remote add origin https://github.com/TU-USUARIO/TU-REPOSITORIO.git
 git push -u origin main
 ```
 
-## Deploy to Vercel
+## Desplegar en Vercel
 
-1. Push the repository to GitHub.
-2. Open Vercel and click **Add New > Project**.
-3. Import the GitHub repository.
-4. Framework preset: **Next.js**.
-5. Click **Deploy**.
+1. Entra en Vercel.
+2. Importa el repositorio de GitHub.
+3. Vercel detectará Next.js automáticamente.
+4. Pulsa Deploy.
 
-No environment variables are required.
+## Personalización rápida
 
-## Main files
+- Contenido principal: `app/page.tsx`
+- Colores y estilos: `app/globals.css`
+- Scrollytelling: `components/CoffeeStory.tsx`
+- Bolsa de café: `components/CoffeePack.tsx`
+- Taza: `components/CoffeeCup.tsx`
+- Navegación: `components/NavBar.tsx`
 
-- `app/page.tsx` — page structure and content
-- `app/globals.css` — complete visual system and responsive styling
-- `components/ScrollFeature.tsx` — sticky scroll animation with Framer Motion
-- `components/PhoneMockup.tsx` — original CSS-based device mockup
-- `components/NavBar.tsx` — floating navigation
-
-## Adapt it
-
-Replace:
-- `Nova X Pro` with your product or brand.
-- Burgundy gradients in `app/globals.css` with your palette.
-- The CSS phone mockup with real project images using `next/image`.
-- Placeholder specifications with real product data.
-
-For production, update `metadataBase` in `app/layout.tsx` to the final domain.
+Sustituye `https://example.com` en `app/layout.tsx`, `app/sitemap.ts` y `app/robots.ts` por el dominio real antes de publicar.

@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nova X Pro — Premium Product Demo",
-  description:
-    "Clean-room premium product landing page built with Next.js and Framer Motion, ready for GitHub and Vercel.",
+  title: "Bruma Coffee — Café de especialidad",
+  description: "Landing premium con scrollytelling para una marca de café de especialidad.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
-    title: "Nova X Pro — Premium Product Demo",
-    description: "A premium scroll-driven product landing page template.",
+    title: "Bruma Coffee — Café de especialidad",
+    description: "Una experiencia digital de café construida con Next.js y Framer Motion.",
     type: "website",
   },
 };
